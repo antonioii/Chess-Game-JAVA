@@ -24,11 +24,15 @@ public class Board {
 	}	
 	
 	//Access piece through board position:
-	public Piece piece(int row, int columns) {
-		return pieces[row][columns];
+	public Piece piece(int row, int column) {
+		return pieces[row][column];
 	}
 	//Access piece through piece position:
 	public Piece piece(Position position) {
 		return pieces[position.getRow()][position.getColumn()];
+	}
+	public void placePiece(Piece piece, Position position) {
+		pieces[position.getRow()][position.getColumn()] = piece;
+		piece.position = position;
 	}
 }

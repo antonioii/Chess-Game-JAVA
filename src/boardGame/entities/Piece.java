@@ -6,7 +6,7 @@ public class Piece {
 	
 	public Piece(Board board) {
 		this.board = board;
-		//this.position = null; is not necessary to be declared
+		position = null; //is not necessary to be declared
 	}
 
 	protected Board getBoard() {

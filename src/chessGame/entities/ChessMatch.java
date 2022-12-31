@@ -25,12 +25,18 @@ public class ChessMatch {
 		return pieceMatrix;
 	}
 	
+	//Place new piece using chessPosition and not matrix position:
+	private void placePieceInChessPosition(char column, int row, ChessPiece chessPiece) {
+		board.placePiece(chessPiece, new ChessPosition(column, row).toPosition());
+	}
+	
 	private void initialSetup() {
-		//testing snippets with random rows and columns:
+		//Testing snippets with random rows and columns:
 		board.placePiece(new King(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
 		board.placePiece(new King(board, Color.BLACK), new Position(new Random().nextInt(8),new Random().nextInt(8)));
 		board.placePiece(new Rook(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
-		board.placePiece(new Rook(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
+		//Testing snippet with a given chess position:
+		placePieceInChessPosition('h',8, new Rook(board, Color.BLACK));
 		
 	}
 }

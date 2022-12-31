@@ -21,8 +21,11 @@ public class Program {
 		
 		//Testing board creation:
 		Board board = new Board(rand, rand);
+		System.out.println("Testing board creation: ");
+		System.out.println(board.getRows()+", "+board.getColumns()+"\n");
 		
 		//Testing chess matches with random kings and castles:
+		System.out.println("Testing placePiece and printBoard with possible random exceptions:");
 		ChessMatch chessMatch = new ChessMatch();
 		Interface.printBoard(chessMatch.getPieces());
 	}

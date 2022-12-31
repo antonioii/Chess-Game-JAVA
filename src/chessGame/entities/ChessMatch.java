@@ -26,10 +26,11 @@ public class ChessMatch {
 	}
 	
 	private void initialSetup() {
-		//testing snippets with random rows and columns:		
+		//testing snippets with random rows and columns:
 		board.placePiece(new King(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
 		board.placePiece(new King(board, Color.BLACK), new Position(new Random().nextInt(8),new Random().nextInt(8)));
 		board.placePiece(new Rook(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
 		board.placePiece(new Rook(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
+		
 	}
 }

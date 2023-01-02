@@ -40,7 +40,9 @@ public class Program {
 		System.out.print("Destine position: ");
 		ChessPosition destine = Interface.readChessPosition(sc);
 		ChessPiece capturedPiece = chessMatch.performChessMove(source, destine);
+		Interface.consoleClear();
 		Interface.printBoard(chessMatch.getPieces());
+		
 
 		sc.close();
 	}

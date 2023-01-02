@@ -1,11 +1,13 @@
 //ALG - CHESS GAME APP
 // 30/12/2022
 package application;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
 import boardGame.entities.Board;
 import boardGame.entities.Position;
+import chessGame.entities.ChessException;
 import chessGame.entities.ChessMatch;
 import chessGame.entities.ChessPiece;
 import chessGame.entities.ChessPosition;
@@ -33,6 +35,7 @@ public class Program {
 		Interface.printBoard(chessMatch.getPieces());
 		
 		//Testing chess moves inputs:
+		
 		System.out.println("Testing moviments:");
 		Interface.printBoard(chessMatch.getPieces());
 		System.out.print("\nSource position: ");
@@ -43,7 +46,6 @@ public class Program {
 		Interface.consoleClear();
 		Interface.printBoard(chessMatch.getPieces());
 		
-
 		sc.close();
 	}
 

@@ -1,6 +1,8 @@
 package chessGame.entities;
 
 import boardGame.entities.Board;
+import boardGame.entities.Piece;
+import boardGame.entities.Position;
 import chessGame.entities.pieces.King;
 import chessGame.entities.pieces.Rook;
 
@@ -27,9 +29,28 @@ public class ChessMatch {
 		board.placePiece(chessPiece, new ChessPosition(column, row).toPosition());
 	}
 	
+	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition destinePosition) {
+		Position source = sourcePosition.toPosition();
+		Position destine = destinePosition.toPosition();
+		validateSourcePosition(source);
+		Piece capturedPiece = makeMove(source, destine);
+		return (ChessPiece) capturedPiece;		
+	}
+	private Piece makeMove(Position source, Position destine) {
+		Piece winningPiece = board.removePiece(source);
+		Piece capturedPiece = board.removePiece(destine);
+		board.placePiece(winningPiece, destine);
+		return capturedPiece;
+	}
+	private void validateSourcePosition(Position position) {
+		if(!board.thereIsAPiece(position)) {
+			throw new ChessException("ERROR: There is no piece on the source position.");
+		}
+	}
+	
 	private void initialSetup() {
 		/*TESTS SNIPPET:
-		//Testing snippets with random rows and columns:
+		//Testing snippet with random rows and columns:
 		board.placePiece(new King(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
 		board.placePiece(new King(board, Color.BLACK), new Position(new Random().nextInt(8),new Random().nextInt(8)));
 		board.placePiece(new Rook(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
@@ -53,4 +74,5 @@ public class ChessMatch {
 		placePieceInChessPosition('d', 8, new King(board, Color.BLACK));
 		
 	}
+	
 }

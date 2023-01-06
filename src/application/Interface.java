@@ -31,7 +31,7 @@ public class Interface {
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	/**/
 	
-	public static void consoleClear() {
+	public static void screenUpdate() {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}

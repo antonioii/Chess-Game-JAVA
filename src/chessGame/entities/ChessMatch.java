@@ -24,10 +24,6 @@ public class ChessMatch {
 		return pieceMatrix;
 	}
 	
-	//Place new piece using chessPosition and not matrix position:
-	private void placePieceInChessPosition(char column, int row, ChessPiece chessPiece) {
-		board.placePiece(chessPiece, new ChessPosition(column, row).toPosition());
-	}
 	
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition destinePosition) {
 		Position source = sourcePosition.toPosition();
@@ -35,14 +31,16 @@ public class ChessMatch {
 		validateSourcePosition(source);
 		validateDestinePosition(source, destine);
 		Piece capturedPiece = makeMove(source, destine);
-		return (ChessPiece) capturedPiece;		
+		return (ChessPiece)capturedPiece;		
 	}
+	
 	private Piece makeMove(Position source, Position destine) {
 		Piece winningPiece = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(destine);
 		board.placePiece(winningPiece, destine);
 		return capturedPiece;
 	}
+	
 	private void validateSourcePosition(Position position) {
 		if(!board.thereIsAPiece(position)) {
 			throw new ChessException("ERROR: There is no piece on the source position.");
@@ -51,10 +49,16 @@ public class ChessMatch {
 			throw new ChessException("ERROR: There is no possible moves for the choosen piece!");
 		}
 	}
+	
 	private void validateDestinePosition(Position source, Position destine) {
 		if(!board.piece(source).possibleMove(destine)) {
 			throw new ChessException("The chosen piece can't move to destine position.");
 		}
+	}
+	
+	//Place new piece using chessPosition and not matrix position:
+	private void placePieceInChessPosition(char column, int row, ChessPiece chessPiece) {
+		board.placePiece(chessPiece, new ChessPosition(column, row).toPosition());
 	}
 	
 	private void initialSetup() {

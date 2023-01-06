@@ -17,9 +17,9 @@ public class Program {
 		ChessMatch chessMatch = new ChessMatch();
 		
 		while (true) {
-			//CTRL+C inside the console to stop the app
+			//CTRL+C inside the console to stop the APP
 			try {
-				Interface.consoleClear();
+				Interface.screenUpdate();;
 				Interface.printBoard(chessMatch.getPieces());
 				System.out.println();
 				System.out.print("Source: ");
@@ -36,7 +36,7 @@ public class Program {
 				sc.nextLine();
 			}
 			catch(InputMismatchException e) {
-				System.out.println(e.getLocalizedMessage());
+				System.out.println(e.getMessage());
 				sc.nextLine();
 			}
 			

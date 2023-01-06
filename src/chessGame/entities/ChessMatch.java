@@ -33,6 +33,7 @@ public class ChessMatch {
 		Position source = sourcePosition.toPosition();
 		Position destine = destinePosition.toPosition();
 		validateSourcePosition(source);
+		validateDestinePosition(source, destine);
 		Piece capturedPiece = makeMove(source, destine);
 		return (ChessPiece) capturedPiece;		
 	}
@@ -50,18 +51,13 @@ public class ChessMatch {
 			throw new ChessException("ERROR: There is no possible moves for the choosen piece!");
 		}
 	}
+	private void validateDestinePosition(Position source, Position destine) {
+		if(!board.piece(source).possibleMove(destine)) {
+			throw new ChessException("The chosen piece can't move to destine position.");
+		}
+	}
 	
 	private void initialSetup() {
-		/*TESTS SNIPPET:
-		//Testing snippet with random rows and columns:
-		board.placePiece(new King(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
-		board.placePiece(new King(board, Color.BLACK), new Position(new Random().nextInt(8),new Random().nextInt(8)));
-		board.placePiece(new Rook(board, Color.WHITE), new Position(new Random().nextInt(8),new Random().nextInt(8)));
-		
-		//Testing snippet with a given chess position:
-		placePieceInChessPosition('h',8, new Rook(board, Color.BLACK));
-		*/
-		
 		placePieceInChessPosition('c', 1, new Rook(board, Color.WHITE));
 		placePieceInChessPosition('c', 2, new Rook(board, Color.WHITE));
 		placePieceInChessPosition('d', 2, new Rook(board, Color.WHITE));

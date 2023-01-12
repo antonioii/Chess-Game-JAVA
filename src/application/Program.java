@@ -19,7 +19,7 @@ public class Program {
 		while (true) {
 			//CTRL+C inside the console to stop the APP
 			try {
-				Interface.screenUpdate();;
+				Interface.screenUpdate(); //clean the console log
 				Interface.printBoard(chessMatch.getPieces());
 				System.out.println();
 				System.out.print("Source: ");

@@ -25,6 +25,10 @@ public class Program {
 				System.out.print("Source: ");
 				ChessPosition source = Interface.readChessPosition(sc);
 				
+				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
+				Interface.screenUpdate();
+				Interface.printBoard(chessMatch.getPieces(), possibleMoves);
+				
 				System.out.println();
 				System.out.print("Destine: ");
 				ChessPosition destine = Interface.readChessPosition(sc);

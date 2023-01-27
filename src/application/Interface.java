@@ -59,9 +59,11 @@ public class Interface {
 		printCapturedPieces(captured);
 		System.out.println("Turn: " + chessMatch.getTurn());
 		System.out.println("Waiting player: "+chessMatch.getCurrentPlayer());
+		if(chessMatch.getCheck()) {
+			System.out.println(ANSI_CYAN+"CHECK!"+ANSI_RESET);
+		}
 	}
 	
-	//Print a simple version of the board:
 	public static void printBoard(ChessPiece[][] pieces) {
 		System.out.println("    _______________________________");		
 		for (int i=0; i<pieces.length; i++) {

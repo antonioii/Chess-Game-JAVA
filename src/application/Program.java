@@ -1,7 +1,9 @@
 //ALG - CHESS GAME APP
 // 30/12/2022
 package application;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import chessGame.entities.ChessException;
@@ -15,12 +17,13 @@ public class Program {
 
 		Scanner sc = new Scanner(System.in);
 		ChessMatch chessMatch = new ChessMatch();
+		List<ChessPiece> captured = new ArrayList<ChessPiece>();
 		
 		while (true) {
 			//CTRL+C inside the console to stop the APP
 			try {
 				Interface.screenUpdate(); //clean the console log
-				Interface.printMatch(chessMatch);
+				Interface.printMatch(chessMatch, captured);
 				//Interface.printBoard(chessMatch.getPieces());
 				System.out.println();
 				System.out.print("Source: ");
@@ -35,6 +38,10 @@ public class Program {
 				ChessPosition destine = Interface.readChessPosition(sc);
 				
 				ChessPiece capturedPiece = chessMatch.performChessMove(source, destine);
+				if(capturedPiece != null) {
+					captured.add(capturedPiece);					
+				}
+			
 			}
 			catch(ChessException e) {
 				System.out.println(e.getMessage());

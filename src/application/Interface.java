@@ -3,6 +3,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chessGame.entities.ChessMatch;
 import chessGame.entities.ChessPiece;
 import chessGame.entities.ChessPosition;
 import chessGame.entities.Color;
@@ -47,6 +48,13 @@ public class Interface {
 		catch (RuntimeException e) {
 			throw new InputMismatchException("ERROR: Valid input values are from a1 to h8");
 		}
+	}
+	
+	public static void printMatch(ChessMatch chessMatch) {
+		printBoard(chessMatch.getPieces());
+		System.out.println();
+		System.out.println("Turn: " + chessMatch.getTurn());
+		System.out.println("Waiting player: "+chessMatch.getCurrentPlayer());
 	}
 	
 	//Print a simple version of the board:

@@ -20,7 +20,8 @@ public class Program {
 			//CTRL+C inside the console to stop the APP
 			try {
 				Interface.screenUpdate(); //clean the console log
-				Interface.printBoard(chessMatch.getPieces());
+				Interface.printMatch(chessMatch);
+				//Interface.printBoard(chessMatch.getPieces());
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = Interface.readChessPosition(sc);

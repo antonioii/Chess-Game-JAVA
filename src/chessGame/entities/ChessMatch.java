@@ -17,6 +17,7 @@ public class ChessMatch {
 	private boolean check;
 	private List<Piece> piecesOnTheBoard = new ArrayList<Piece>();
 	private List<Piece> capturedPieces = new ArrayList<Piece>();
+	private boolean checkmate;
 		
 	
 	public ChessMatch() {
@@ -35,6 +36,9 @@ public class ChessMatch {
 	}
 	public boolean getCheck() {
 		return check;
+	}
+	public boolean getCheckmate() {
+		return checkmate;
 	}
 	
 	public ChessPiece[][] getPieces() {
@@ -68,8 +72,12 @@ public class ChessMatch {
 		}
 		check = (testCheck(opponent(currentPlayer))) ? true : false;
 		
-		//begin next turn:
-		nextTurn();
+		//if not in checkmate, begin next turn:
+		if(testCheckmate(opponent(currentPlayer))) {
+			checkmate = true;
+		} else {
+			nextTurn();
+		}
 		return (ChessPiece)capturedPiece;		
 	}
 	
@@ -148,6 +156,31 @@ public class ChessMatch {
 		return false;
 	}
 	
+	private boolean testCheckmate(Color color) {
+		if(!testCheck(color)) {
+			return false;
+		}
+		List<Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList());
+		for(Piece p : list) {
+			boolean[][] matrixOfPossibleMoves = p.possibleMoves();
+			for(int i=0;i<board.getRows();i++) {
+				for(int j=0; j<board.getColumns();j++) {
+					if(matrixOfPossibleMoves[i][j]) {
+						Position initialPlace = ((ChessPiece)p).getChessPosition().toPosition();
+						Position futurePlace = new Position(i,j);
+						Piece capturedPiece = makeMove(initialPlace, futurePlace);
+						boolean testCheck = testCheck(color);
+						undoMove(initialPlace, futurePlace, capturedPiece);
+						if(!testCheck) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
 	//Place new piece using chessPosition and not matrix position:
 	private void placePieceInChessPosition(char column, int row, ChessPiece chessPiece) {
 		board.placePiece(chessPiece, new ChessPosition(column, row).toPosition());
@@ -155,19 +188,13 @@ public class ChessMatch {
 	}
 	
 	private void initialSetup() {
-		placePieceInChessPosition('c', 1, new Rook(board, Color.WHITE));
-		placePieceInChessPosition('c', 2, new Rook(board, Color.WHITE));
-		placePieceInChessPosition('d', 2, new Rook(board, Color.WHITE));
-		placePieceInChessPosition('e', 2, new Rook(board, Color.WHITE));
-		placePieceInChessPosition('e', 1, new Rook(board, Color.WHITE));
-		placePieceInChessPosition('d', 1, new King(board, Color.WHITE));
+		placePieceInChessPosition('h', 7, new Rook(board, Color.WHITE));
+		placePieceInChessPosition('d', 1, new Rook(board, Color.WHITE));
+		placePieceInChessPosition('e', 1, new King(board, Color.WHITE));
 
-		placePieceInChessPosition('c', 7, new Rook(board, Color.BLACK));
-		placePieceInChessPosition('c', 8, new Rook(board, Color.BLACK));
-		placePieceInChessPosition('d', 7, new Rook(board, Color.BLACK));
-		placePieceInChessPosition('e', 7, new Rook(board, Color.BLACK));
-		placePieceInChessPosition('e', 8, new Rook(board, Color.BLACK));
-		placePieceInChessPosition('d', 8, new King(board, Color.BLACK));
+
+		placePieceInChessPosition('b', 8, new Rook(board, Color.BLACK));
+		placePieceInChessPosition('a', 8, new King(board, Color.BLACK));
 		
 	}
 	

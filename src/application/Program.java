@@ -19,7 +19,7 @@ public class Program {
 		ChessMatch chessMatch = new ChessMatch();
 		List<ChessPiece> captured = new ArrayList<ChessPiece>();
 		
-		while (true) {
+		while (!chessMatch.getCheckmate()) {
 			//CTRL+C inside the console to stop the APP
 			try {
 				Interface.screenUpdate(); //clean the console log
@@ -53,7 +53,8 @@ public class Program {
 			}
 			
 		}
-		
+		Interface.screenUpdate();
+		Interface.printMatch(chessMatch, captured);
 		
 	}
 

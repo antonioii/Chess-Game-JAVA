@@ -8,6 +8,7 @@ import boardGame.entities.Board;
 import boardGame.entities.Piece;
 import boardGame.entities.Position;
 import chessGame.entities.pieces.King;
+import chessGame.entities.pieces.Pawn;
 import chessGame.entities.pieces.Rook;
 
 public class ChessMatch {
@@ -190,13 +191,32 @@ public class ChessMatch {
 	}
 	
 	private void initialSetup() {
-		placePieceInChessPosition('h', 7, new Rook(board, Color.WHITE));
-		placePieceInChessPosition('d', 1, new Rook(board, Color.WHITE));
+		placePieceInChessPosition('a', 1, new Rook(board, Color.WHITE));
 		placePieceInChessPosition('e', 1, new King(board, Color.WHITE));
+		placePieceInChessPosition('h', 1, new Rook(board, Color.WHITE));
+		placePieceInChessPosition('a', 2, new Pawn(board, Color.WHITE));
+		placePieceInChessPosition('b', 2, new Pawn(board, Color.WHITE));
+		placePieceInChessPosition('c', 2, new Pawn(board, Color.WHITE));
+		placePieceInChessPosition('d', 2, new Pawn(board, Color.WHITE));
+		placePieceInChessPosition('e', 2, new Pawn(board, Color.WHITE));
+		placePieceInChessPosition('f', 2, new Pawn(board, Color.WHITE));
+		placePieceInChessPosition('g', 2, new Pawn(board, Color.WHITE));
+		placePieceInChessPosition('h', 2, new Pawn(board, Color.WHITE));
 
 
-		placePieceInChessPosition('b', 8, new Rook(board, Color.BLACK));
-		placePieceInChessPosition('a', 8, new King(board, Color.BLACK));
+
+		placePieceInChessPosition('a', 8, new Rook(board, Color.BLACK));
+		placePieceInChessPosition('e', 8, new King(board, Color.BLACK));
+		placePieceInChessPosition('h', 8, new Rook(board, Color.BLACK));
+		placePieceInChessPosition('a', 7, new Pawn(board, Color.BLACK));
+		placePieceInChessPosition('b', 7, new Pawn(board, Color.BLACK));
+		placePieceInChessPosition('c', 7, new Pawn(board, Color.BLACK));
+		placePieceInChessPosition('d', 7, new Pawn(board, Color.BLACK));
+		placePieceInChessPosition('e', 7, new Pawn(board, Color.BLACK));
+		placePieceInChessPosition('f', 7, new Pawn(board, Color.BLACK));
+		placePieceInChessPosition('g', 7, new Pawn(board, Color.BLACK));
+		placePieceInChessPosition('h', 7, new Pawn(board, Color.BLACK));
+
 		
 	}
 	

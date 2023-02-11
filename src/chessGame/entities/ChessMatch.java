@@ -11,6 +11,7 @@ import chessGame.entities.pieces.Bishop;
 import chessGame.entities.pieces.King;
 import chessGame.entities.pieces.Knight;
 import chessGame.entities.pieces.Pawn;
+import chessGame.entities.pieces.Queen;
 import chessGame.entities.pieces.Rook;
 
 public class ChessMatch {
@@ -196,6 +197,7 @@ public class ChessMatch {
 		placePieceInChessPosition('a', 1, new Rook(board, Color.WHITE));
 		placePieceInChessPosition('b', 1, new Knight(board, Color.WHITE));
 		placePieceInChessPosition('c', 1, new Bishop(board, Color.WHITE));
+		placePieceInChessPosition('d', 1, new Queen(board, Color.WHITE));
 		placePieceInChessPosition('e', 1, new King(board, Color.WHITE));
 		placePieceInChessPosition('h', 1, new Rook(board, Color.WHITE));
 		placePieceInChessPosition('f', 1, new Bishop(board, Color.WHITE));
@@ -214,6 +216,7 @@ public class ChessMatch {
 		placePieceInChessPosition('a', 8, new Rook(board, Color.BLACK));
 		placePieceInChessPosition('b', 8, new Knight(board, Color.BLACK));
 		placePieceInChessPosition('c', 8, new Bishop(board, Color.BLACK));
+		placePieceInChessPosition('d', 8, new Queen(board, Color.BLACK));
 		placePieceInChessPosition('e', 8, new King(board, Color.BLACK));
 		placePieceInChessPosition('f', 8, new Bishop(board, Color.BLACK));
 		placePieceInChessPosition('g', 8, new Knight(board, Color.BLACK));

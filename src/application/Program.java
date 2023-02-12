@@ -1,6 +1,7 @@
 //ALG - CHESS GAME APP
 // 30/12/2022
 package application;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -42,11 +43,15 @@ public class Program {
 					captured.add(capturedPiece);					
 				}
 				if(chessMatch.getPromoted() != null) {
-					System.out.print("Enter desired promoted piece (B/H/R/Q): ");
-					String type = sc.nextLine();
+					System.out.print("Enter a desired promoted piece (B/H/R/Q): ");
+					String type = sc.nextLine().toUpperCase();
+					while(!type.equals("B") && !type.equals("H") && !type.equals("R") && !type.equals("Q")) {
+						System.out.print("Error: Invalid value! Enter a desired promoted piece (B/H/R/Q): ");
+						type = sc.nextLine().toUpperCase();
+					}					
 					chessMatch.replacePromotedPiece(type);
 				}
-			
+				
 			}
 			catch(ChessException e) {
 				System.out.println(e.getMessage());

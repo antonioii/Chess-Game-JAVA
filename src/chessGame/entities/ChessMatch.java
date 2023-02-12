@@ -1,5 +1,6 @@
 package chessGame.entities;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +24,7 @@ public class ChessMatch {
 	private List<Piece> capturedPieces = new ArrayList<Piece>();
 	private boolean checkmate;
 	private ChessPiece enPassantVulnerable;
+	private ChessPiece promoted;
 	
 	public ChessMatch() {
 		board = new Board(8, 8);
@@ -46,6 +48,9 @@ public class ChessMatch {
 	}
 	public ChessPiece getEnPassantVulnerable() {
 		return enPassantVulnerable;
+	}
+	public ChessPiece getPromoted() {
+		return promoted;
 	}
 	
 	public ChessPiece[][] getPieces() {
@@ -85,6 +90,16 @@ public class ChessMatch {
 			undoMove(source, destine, capturedPiece);
 			throw new ChessException("You can't put yourself in check!");
 		}
+		
+			//special move: promotion
+			promoted = null;
+			if(movedPiece instanceof Pawn) {
+				if( (movedPiece.getColor() == Color.WHITE && destine.getRow() == 0) || (movedPiece.getColor() == Color.BLACK && destine.getRow() == 7) ) {
+					promoted = (ChessPiece)board.piece(destine);
+					promoted = replacePromotedPiece("Q");
+				}
+			}
+			
 		check = (testCheck(opponent(currentPlayer))) ? true : false;
 		
 		//if not in checkmate, begin next turn:
@@ -94,6 +109,30 @@ public class ChessMatch {
 			nextTurn();
 		}
 		return (ChessPiece)capturedPiece;		
+	}
+	
+	public ChessPiece replacePromotedPiece(String type) {
+		if(promoted == null) {
+			throw new IllegalStateException("ERROR: There is no piece to be promoted.");
+		}
+		if(!type.equals("B") && !type.equals("H") && !type.equals("R") && !type.equals("Q")) {
+			throw new InvalidParameterException("Invalid type for promotion");
+		}
+		Position pos = promoted.getChessPosition().toPosition();
+		Piece p = board.removePiece(pos);
+		piecesOnTheBoard.remove(p);
+		
+		ChessPiece newPiece = newPiece(type, promoted.getColor());
+		board.placePiece(newPiece, pos);
+		piecesOnTheBoard.add(newPiece);
+		return newPiece;		
+	}
+	
+	private ChessPiece newPiece(String type, Color color) {
+		if(type.equals("B")) {return new Bishop(board, color);}
+		if(type.equals("H")) {return new Knight(board, color);}
+		if(type.equals("R")) {return new Rook(board, color);}
+		return new Queen(board, color); //doesn't need a test because other options have already been tested
 	}
 	
 	private Piece makeMove(Position source, Position destine) {

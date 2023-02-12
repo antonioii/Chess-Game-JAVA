@@ -7,9 +7,16 @@ game of chess through the console.
 
 ## UML Sketch:
 
-![UML-Sketch](./UML-sketch.png)
+### Initial Basic UML
 
-## To be done:
+![UML-Sketch](./UML-sketch-imgs/UML-sketch.png)
 
-- [ ] Add all classes and methods as displayed in the UML
-- [ ] Add initialSetup method to the UML sketch
+### In depth final UMLS per package
+
+![App](./UML-sketch-imgs/package-app.png)
+![boardGame-entities](./UML-sketch-imgs/boardGame-entities.png)
+![chessGame-entities](./UML-sketch-imgs/chessGame-entities.png)
+![chessGame-entities-pieces](./UML-sketch-imgs/chessGame-entities-pieces.png)
+
+
+

@@ -3,7 +3,7 @@
 A console chess game implemented using Java as part of the
 Nelio Alves Complete Java course. The game features a
 complete set of chess pieces and the ability to play a full
-game of chess through the console.
+game of chess through the console. <ins>It's necessary two players</ins>.
 
 ## Sample:
 

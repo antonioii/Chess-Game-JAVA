@@ -120,12 +120,9 @@ public class Interface {
 	private static void printCapturedPieces(List<ChessPiece> captured) {
 		List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
 		List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
-		
 		System.out.println("== Captured pieces ==");
-		//System.out.print("White: "+ANSI_WHITE);
 		System.out.print("White: "+ANSI_YELLOW);
 		System.out.println(Arrays.toString(white.toArray()) + ANSI_RESET);
-		//System.out.print("Black: "+ANSI_YELLOW);
 		System.out.print("Black: "+ANSI_RED);
 		System.out.println(Arrays.toString(black.toArray()) + ANSI_RESET);
 		System.out.println();
